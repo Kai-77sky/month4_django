@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block page %}
+    {% for client in objects_list %}
+        <div>
+            <a href="/client/{{ client.id }}">{{ client.name }}</a>
+            {% if client.photo %}
+            <br>
+            <img height="150px" src="{{ client.photo.url }}">
+            {% endif %}
+        </div>
+    <hr>
+    {% endfor %}
+{% endblock %}

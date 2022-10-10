@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block page %}
+    <h1>Инфо клиента</h1>
+    <div>Имя: {{ client.name }}</div>
+    <div>Адресс: {{ client.address }}</div>
+    <div>Активность: {{ client.is_active }}</div>
+    <div>Фото:
+        {% if client.photo %}
+            <img width="150px" height="150px" src="{{ client.photo.url }}"/>
+        {% else %}
+            <span>Нет фото</span>
+        {% endif %}
+    </div>
+{% endblock %}
