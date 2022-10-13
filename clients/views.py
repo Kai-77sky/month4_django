@@ -112,3 +112,8 @@ class CreateOrderDjangFormView(CreateView):
 class OrderDetailView(DetailView):
     model = Order
     template_name = 'order_info.html'
+
+
+class ClientOrderList(ListView):
+    model = Order
+    template_name = 'order_list.html'

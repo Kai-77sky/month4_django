@@ -28,12 +28,14 @@ urlpatterns = [
     path('', makers_list),
     path('clients/', ClientListView.as_view, name='clients-list'),
     path('client/<int:id>/', client_detail, name='client_detail'),
+    path('client/<int:id>/order-list', ClientOrderList.as_view(), name='client-order-list'),
     path('client/update/<int:id>/', client_update, name='client_detail'),
     path('orders/', OrderListView.as_view(), name='order-list'),
     path('order/<int:pk>/', OrderDetailView.as_view(), name='order-info'),
     path('order/create/', CreateOrderView.as_view(), name='create-order'),
     path('order/djangoform/', CreateOrderDjangFormView.as_view(), name='order-djangoform'),
     path('test/', MyView.as_view()),
+    path('singin/', LoginView.as_view(), name='sing-in'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,6 +1,8 @@
-from django.shortcuts import render, HttpResponse
-from .models import Bottle
+from django.shortcuts import render, HttpResponse, redirect
 from django.views import View
+from django.contrib.auth import authenticate, login
+from .models import Bottle
+from .forms import LoginForm
 
 
 def contacts(request):
@@ -26,3 +28,20 @@ def base(request):
 class MyView(View):
     def get(self, request):
         return render(request, 'about.html')
+
+
+class LoginView(View):
+    def get(self, request):
+        context = {'form': LoginForm()}
+        return render(request, 'auth/sing_in.html', context)
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+        user_login = data['username']
+        password = data['password']
+        user = authenticate(request, username=user_login, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect(about)
+        else:
+            return HttpResponse('Неверный логин или пароль')

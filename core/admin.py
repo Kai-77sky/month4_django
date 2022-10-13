@@ -1,6 +1,5 @@
 from django.contrib import admin
-# core/admin.py
-
+from django.contrib.auth import authenticate, login
 from .models import Bottle
 
 
